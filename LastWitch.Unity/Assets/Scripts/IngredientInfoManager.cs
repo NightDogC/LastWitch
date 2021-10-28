@@ -4,10 +4,11 @@ using UnityEngine;
 using System.Xml;
 using System.Reflection;
 using Newtonsoft.Json;
+using HG.Libs;
 using System;
 using System.IO;
 
-public class IngredientInfo { 
+public class IngredientInfo {
     public int Id { get; set; }
     public string Name { get; set; }
     public int Quality { get; set; }
@@ -18,10 +19,12 @@ public class Ingredient {
     IngredientInfo Info;
     public long PickTime { get; set; }
     public int Count { get; set; } = 0;
-    public void Put() { 
+    public void Put()
+    {
         Count++;
     }
-    public void Take() { 
+    public void Take()
+    {
         Count = Count - 1 <= 0 ? 0 : Count - 1;
     }
     public Ingredient( int Count, long Picktime = -1 )
@@ -34,10 +37,13 @@ public class Ingredient {
 public class IngredientInfoManager {
     public enum Load {
         XML,
-        JSON
+        JSON,
+        EXCEL
     }
-    private const string mJsonPath = "Config/Ingredients.json";
-    public IngredientInfoManager( Load load = Load.JSON )
+    private const string mJsonPath = "Configs/Ingredients.json";
+    private const string mExcelPath = "Excels/IngredientInfos.xlsx";
+
+    public IngredientInfoManager( Load load = Load.EXCEL )
     {
         switch ( load ) {
             case Load.XML:
@@ -46,47 +52,26 @@ public class IngredientInfoManager {
             case Load.JSON:
                 IngredInfos = LoadJson();
                 break;
+            case Load.EXCEL:
+                IngredInfos = LoadExcel();
+                break;
             default:
                 break;
         }
     }
     public List<IngredientInfo> IngredInfos { get; set; } = new List<IngredientInfo>();
+    public List<IngredientInfo> LoadExcel( string path = mExcelPath )
+    {
+        return Excel.DeserializeList<IngredientInfo>( path );
+    }
     public List<IngredientInfo> LoadJson()
     {
         var jstr = File.ReadAllText( mJsonPath );
         return JsonConvert.DeserializeObject<List<IngredientInfo>>( jstr );
     }
-    public void SaveJson() { 
-        var jstr = JsonConvert.SerializeObject( IngredInfos );
-        File.WriteAllText( mJsonPath, jstr  );
-    }
-    // 为什么要用泛型？
-    public List<T> LoadXml<T>( string path ) where T : new()
+    public void SaveJson()
     {
-        XmlDocument ingXml = new XmlDocument();
-        ingXml.Load( path );
-        XmlNode xmlNode = ingXml.DocumentElement;
-        XmlNodeList xnl = xmlNode.ChildNodes;
-        List<T> list = new List<T>();
-        foreach ( XmlNode e in xnl ) {
-            T obj = new T();
-            Type t = obj.GetType();
-            FieldInfo[] fields = t.GetFields();
-            foreach ( FieldInfo f in fields ) {
-                string val = e.Attributes[f.Name].Value;
-                if ( f.FieldType == typeof( int ) ) {
-                    f.SetValue( obj, int.Parse( val ) );
-                    Debug.Log( val + "has recorded!" );
-                } else if ( f.FieldType == typeof( double ) ) {
-                    f.SetValue( obj, double.Parse( val ) );
-                    Debug.Log( val + "has recorded!" );
-                } else if ( f.FieldType == typeof( string ) ) {
-                    f.SetValue( obj, val );
-                    Debug.Log( val + "has recorded!" );
-                }
-            }
-            list.Add( obj );
-        }
-        return list;
+        var jstr = JsonConvert.SerializeObject( IngredInfos );
+        File.WriteAllText( mJsonPath, jstr );
     }
 }
