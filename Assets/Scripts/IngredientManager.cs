@@ -16,7 +16,7 @@ public class Ingredient
 
 public class IngredientManager
 {
-    public static List<Ingredient> ingreds;
+    public static List<Ingredient> Ingreds { get; set; }
 
     public static List<T> LoadXml<T>() where T: new()
     {

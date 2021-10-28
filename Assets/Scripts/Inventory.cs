@@ -8,8 +8,8 @@ public class Inventory
     
     public static void InitInventory()
     {
-        Debug.Log(IngredientManager.ingreds.Count.ToString() + " kinds of ingredients found.");
-        invtArr = new int[IngredientManager.ingreds.Count];
+        Debug.Log(IngredientManager.Ingreds.Count.ToString() + " kinds of ingredients found.");
+        invtArr = new int[IngredientManager.Ingreds.Count];
     }
 
     public static void PutIngreds(int id, int amount = 1)
