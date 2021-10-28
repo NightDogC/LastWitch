@@ -1,0 +1,5 @@
+<IngredientsConfig>
+<ingredient id="0" name="ING1" quality="1" baseScore="10" text="This is the first ingredient."></ingredient>
+<ingredient id="1" name="ING2" quality="1" baseScore="15" text="This is the second ingredient."></ingredient>
+<ingredient id="2" name="ING3" quality="1" baseScore="20" text="This is the third ingredient."></ingredient>
+</IngredientsConfig>
