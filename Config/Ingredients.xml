@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<IngredientsConfig>
+<ingredient id="0" name="ING1" quality="1" baseScore="10" description="This is the first ingredient."></ingredient>
+<ingredient id="1" name="ING2" quality="1" baseScore="15" description="This is the second ingredient."></ingredient>
+<ingredient id="2" name="ING3" quality="1" baseScore="20" description="This is the third ingredient." ></ingredient>
+</IngredientsConfig>

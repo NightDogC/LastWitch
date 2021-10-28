@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class LoadManager : MonoBehaviour
 {
-    void Awoke()
+    void Awake()
     {
-        IngredientManager.ingredients = IngredientManager.LoadXml<IngredientManager.Ingredient>();
+        IngredientManager.ingreds = IngredientManager.LoadXml<Ingredient>();
+        Inventory.InitInventory();
     }
 }
