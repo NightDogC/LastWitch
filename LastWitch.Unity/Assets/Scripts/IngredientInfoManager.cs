@@ -62,7 +62,7 @@ public class IngredientInfoManager {
     public List<IngredientInfo> IngredInfos { get; set; } = new List<IngredientInfo>();
     public List<IngredientInfo> LoadExcel( string path = mExcelPath )
     {
-        return Excel.DeserializeList<IngredientInfo>( path );
+        return Excel.DeserializeList<IngredientInfo>( path, true );
     }
     public List<IngredientInfo> LoadJson()
     {
