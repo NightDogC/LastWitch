@@ -6,7 +6,8 @@ public class LoadManager : MonoBehaviour
 {
     void Awake()
     {
-        IngredientManager.Ingreds = IngredientManager.LoadXml<Ingredient>();
-        Inventory.InitInventory();
+        // IngredientManager.Ingreds = IngredientManager.LoadXml<Ingredient>();
+        IngredientManager.Ingreds = IngredientManager.LoadJson();
+        Inventory inventory = new Inventory();
     }
 }
