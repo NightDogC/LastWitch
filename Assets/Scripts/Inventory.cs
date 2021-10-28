@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Inventory
 {
+    public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
     public Inventory()
     {
-        Debug.Log( IngredientManager.Ingreds.Count.ToString() + " kinds of ingredients found." );
     }
 }

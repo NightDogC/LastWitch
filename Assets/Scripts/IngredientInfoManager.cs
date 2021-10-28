@@ -7,12 +7,16 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 
+public class IngredientInfo { 
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int Quality { get; set; }
+    public int BaseScore { get; set; }
+    public string Description { get; set; }
+}
 public class Ingredient {
-    public int id { get; set; }
-    public string name { get; set; }
-    public int quality { get; set; }
-    public int baseScore { get; set; }
-    public string description { get; set; }
+    IngredientInfo Info;
+    public long PickTime { get; set; }
     public int Count { get; set; } = 0;
     public void Put() { 
         Count++;
@@ -20,25 +24,47 @@ public class Ingredient {
     public void Take() { 
         Count = Count - 1 <= 0 ? 0 : Count - 1;
     }
+    public Ingredient( int Count, long Picktime = -1 )
+    {
+        this.PickTime = PickTime == -1 ? DateTime.Now.Ticks : PickTime;
+        this.Count = Count;
+    }
 }
 
-public static class IngredientManager {
+public class IngredientInfoManager {
+    public enum Load {
+        XML,
+        JSON
+    }
     private const string mJsonPath = "Config/Ingredients.json";
-    public static List<Ingredient> Ingreds { get; set; } = new List<Ingredient>();
-    public static List<Ingredient> LoadJson()
+    public IngredientInfoManager( Load load = Load.JSON )
+    {
+        switch ( load ) {
+            case Load.XML:
+                // IngredientInfo = LoadXml<>
+                break;
+            case Load.JSON:
+                IngredInfos = LoadJson();
+                break;
+            default:
+                break;
+        }
+    }
+    public List<IngredientInfo> IngredInfos { get; set; } = new List<IngredientInfo>();
+    public List<IngredientInfo> LoadJson()
     {
         var jstr = File.ReadAllText( mJsonPath );
-        return JsonConvert.DeserializeObject<List<Ingredient>>( jstr );
+        return JsonConvert.DeserializeObject<List<IngredientInfo>>( jstr );
     }
-    public static void SaveJson() { 
-        var jstr = JsonConvert.SerializeObject( Ingreds );
+    public void SaveJson() { 
+        var jstr = JsonConvert.SerializeObject( IngredInfos );
         File.WriteAllText( mJsonPath, jstr  );
     }
     // 为什么要用泛型？
-    public static List<T> LoadXml<T>() where T : new()
+    public List<T> LoadXml<T>( string path ) where T : new()
     {
         XmlDocument ingXml = new XmlDocument();
-        ingXml.Load( "Config/Ingredients.xml" );
+        ingXml.Load( path );
         XmlNode xmlNode = ingXml.DocumentElement;
         XmlNodeList xnl = xmlNode.ChildNodes;
         List<T> list = new List<T>();
