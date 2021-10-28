@@ -24,7 +24,7 @@ public class Ingredient {
 
 public static class IngredientManager {
     private const string mJsonPath = "Config/Ingredients.json";
-    public static List<Ingredient> Ingreds { get; set; }
+    public static List<Ingredient> Ingreds { get; set; } = new List<Ingredient>();
     public static List<Ingredient> LoadJson()
     {
         var jstr = File.ReadAllText( mJsonPath );
