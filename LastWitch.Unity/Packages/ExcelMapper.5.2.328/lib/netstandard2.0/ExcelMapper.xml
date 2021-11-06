@@ -1,0 +1,1299 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ExcelMapper</name>
+    </assembly>
+    <members>
+        <member name="T:Ganss.Excel.ActionInvoker">
+            <summary>
+            Abstract class action invoker
+            </summary>
+        </member>
+        <member name="M:Ganss.Excel.ActionInvoker.Invoke(System.Object,System.Int32)">
+            <summary>
+            Invoke from an unspecified <paramref name="obj"/> type
+            </summary>
+            <param name="obj">mapping instance class</param>
+            <param name="index">index in the collection</param>
+        </member>
+        <member name="M:Ganss.Excel.ActionInvoker.CreateInstance``1(System.Action{``0,System.Int32})">
+            <summary>
+            <see cref="T:Ganss.Excel.ActionInvokerImpl`1"/> factory
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="mappingAction"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ganss.Excel.ActionInvokerImpl`1">
+            <summary>
+            Generic form <see cref="T:Ganss.Excel.ActionInvoker"/> 
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:Ganss.Excel.ActionInvokerImpl`1.mappingAction">
+            <summary>
+            ref to the mapping action.
+            </summary>
+        </member>
+        <member name="M:Ganss.Excel.ActionInvokerImpl`1.#ctor(System.Action{`0,System.Int32})">
+            <summary>
+            Ctor
+            </summary>
+            <param name="mappingAction"></param>
+        </member>
+        <member name="M:Ganss.Excel.ActionInvokerImpl`1.Invoke(System.Object,System.Int32)">
+            <summary>
+            Invoke Generic Action
+            </summary>
+            <param name="obj"></param>
+            <param name="index"></param>
+        </member>
+        <member name="T:Ganss.Excel.ColumnAttribute">
+            <summary>
+            Attribute that specifies the mapping of a property to a column in an Excel file.
+            </summary>
+            <seealso cref="T:System.Attribute" />
+        </member>
+        <member name="M:Ganss.Excel.ColumnAttribute.#ctor(System.String,Ganss.Excel.MappingDirections)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.ColumnAttribute"/> class.
+            </summary>
+            <param name="name">The name of the column.</param>
+            <param name="directions">mapping direction</param>
+        </member>
+        <member name="M:Ganss.Excel.ColumnAttribute.#ctor(System.Int32,Ganss.Excel.MappingDirections)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.ColumnAttribute"/> class.
+            </summary>
+            <param name="index">The index of the column.</param>
+            <param name="directions">mapping direction</param>
+        </member>
+        <member name="M:Ganss.Excel.ColumnAttribute.#ctor(Ganss.Excel.MappingDirections)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.ColumnAttribute"/> class.
+            </summary>
+            <param name="directions">mapping direction</param>
+        </member>
+        <member name="P:Ganss.Excel.ColumnAttribute.Directions">
+            <summary>
+            Gets the direction of the column.
+            </summary>
+            <value>
+            The name of the column.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ColumnAttribute.Name">
+            <summary>
+            Gets the name of the column.
+            </summary>
+            <value>
+            The name of the column.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ColumnAttribute.Index">
+            <summary>
+            Gets the index of the column.
+            </summary>
+            <value>
+            The index of the column.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ColumnAttribute.Letter">
+            <summary>
+            Gets or sets the column name in Excel letter format where A refers to column 1 etc.
+            </summary>
+        </member>
+        <member name="T:Ganss.Excel.DataFormatAttribute">
+            <summary>
+            Attribute that specifies the data format of an Excel cell.
+            The format can either be a <a href="https://poi.apache.org/apidocs/org/apache/poi/ss/usermodel/BuiltinFormats.html">builtin format</a>
+            or a <a href="https://support.office.com/en-nz/article/Create-or-delete-a-custom-number-format-78f2a361-936b-4c03-8772-09fab54be7f4">custom format string</a>.
+            </summary>
+            <seealso cref="T:System.Attribute" />
+        </member>
+        <member name="P:Ganss.Excel.DataFormatAttribute.BuiltinFormat">
+            <summary>
+            Gets or sets the builtin format, see https://poi.apache.org/apidocs/org/apache/poi/ss/usermodel/BuiltinFormats.html for possible values.
+            </summary>
+            <value>
+            The builtin format.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.DataFormatAttribute.CustomFormat">
+            <summary>
+            Gets or sets the custom format, see https://support.office.com/en-nz/article/Create-or-delete-a-custom-number-format-78f2a361-936b-4c03-8772-09fab54be7f4 for the syntax.
+            </summary>
+            <value>
+            The custom format.
+            </value>
+        </member>
+        <member name="M:Ganss.Excel.DataFormatAttribute.#ctor(System.Int16)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.DataFormatAttribute"/> class.
+            </summary>
+            <param name="format">The format, see https://poi.apache.org/apidocs/org/apache/poi/ss/usermodel/BuiltinFormats.html for possible values.</param>
+        </member>
+        <member name="M:Ganss.Excel.DataFormatAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.DataFormatAttribute"/> class.
+            </summary>
+            <param name="format">The format, see https://support.office.com/en-nz/article/Create-or-delete-a-custom-number-format-78f2a361-936b-4c03-8772-09fab54be7f4 for the syntax.</param>
+        </member>
+        <member name="T:Ganss.Excel.FormulaResultAttribute">
+            <summary>
+            Attribute which specifies that the formula result instead of the formula should be mapped.
+            This applies only to string properties, as for all other types the result will be mapped.
+            </summary>
+            <seealso cref="T:System.Attribute" />
+        </member>
+        <member name="T:Ganss.Excel.IgnoreAttribute">
+            <summary>
+            Attribute that specifies that a property should be ignored.
+            </summary>
+            <seealso cref="T:System.Attribute" />
+        </member>
+        <member name="T:Ganss.Excel.JsonAttribute">
+            <summary>
+            Attribute that specifies that the property should be serialized as JSON.
+            </summary>
+            <seealso cref="T:System.Attribute" />
+        </member>
+        <member name="T:Ganss.Excel.ColumnInfo">
+            <summary>
+            Describes the mapping of a property to a cell in an Excel sheet.
+            </summary>
+        </member>
+        <member name="P:Ganss.Excel.ColumnInfo.Directions">
+            <summary>
+            Gets or sets the mapping directions.
+            </summary>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.SetPropertyType(System.Type)">
+            <summary>
+            Sets the property type.
+            </summary>
+            <param name="propertyType">The property type.</param>
+        </member>
+        <member name="P:Ganss.Excel.ColumnInfo.Name">
+            <summary>
+            Gets or sets the property name.
+            </summary>
+        </member>
+        <member name="P:Ganss.Excel.ColumnInfo.Property">
+            <summary>
+            Gets or sets the property.
+            </summary>
+            <value>
+            The property.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ColumnInfo.IsSubType">
+            <summary>
+            Gets a value indicating whether the mapped property has a nested type.
+            </summary>
+        </member>
+        <member name="P:Ganss.Excel.ColumnInfo.IsNullable">
+            <summary>
+            Gets a value indicating whether the property is nullable.
+            </summary>
+            <value>
+            <c>true</c> if the property is nullable; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ColumnInfo.PropertyType">
+            <summary>
+            Gets the type of the property.
+            </summary>
+            <value>
+            The type of the property.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ColumnInfo.SetCell">
+            <summary>
+            Gets or sets the cell setter.
+            </summary>
+            <value>
+            The cell setter.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ColumnInfo.SetProp">
+            <summary>
+            Gets or sets the property setter.
+            </summary>
+            <value>
+            The property setter.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ColumnInfo.BuiltinFormat">
+            <summary>
+            Gets or sets the builtin format.
+            </summary>
+            <value>
+            The builtin format.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ColumnInfo.CustomFormat">
+            <summary>
+            Gets or sets the custom format.
+            </summary>
+            <value>
+            The custom format.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ColumnInfo.FormulaResult">
+            <summary>
+            Gets or sets a value indicating whether to map the formula result.
+            </summary>
+            <value>
+            <c>true</c> if the formula result will be mapped; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ColumnInfo.Json">
+            <summary>
+            Gets or sets a value indicating whether to serialize as JSON.
+            </summary>
+            <value>
+            <c>true</c> if the property will be serialized as JSON; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.GenerateCellSetter">
+            <summary>
+            Generates the cell setter.
+            </summary>
+            <returns>The cell setter.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.SetColumnStyle(NPOI.SS.UserModel.ISheet,System.Int32)">
+            <summary>Sets the column style.</summary>
+            <param name="sheet">The sheet.</param>
+            <param name="columnIndex">Index of the column.</param>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.SetCellStyle(NPOI.SS.UserModel.ICell)">
+            <summary>Sets the cell style.</summary>
+            <param name="c">The cell.</param>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.GetPropertyValue(System.Object,System.Object,NPOI.SS.UserModel.ICell)">
+            <summary>
+            Computes value that can be assigned to property from cell value.
+            </summary>
+            <param name="o">The object which contains the property.</param>
+            <param name="val">The value.</param>
+            <param name="cell">The cell where the value originates from.</param>
+            <returns>Value that can be assigned to property.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.SetProperty(System.Object,System.Object,NPOI.SS.UserModel.ICell)">
+            <summary>
+            Sets the property of the specified object to the specified value.
+            </summary>
+            <param name="o">The object whose property to set.</param>
+            <param name="val">The value.</param>
+            <param name="cell">The cell where the value originates from.</param>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.GetProperty(System.Object)">
+            <summary>
+            Gets the property value of the specified object.
+            </summary>
+            <param name="o">The object from which to get the property value.</param>
+            <returns>The property value.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.SetCellUsing(System.Action{NPOI.SS.UserModel.ICell,System.Object})">
+            <summary>Specifies a method to use when setting the cell value from an object.</summary>
+            <param name="setCell">The method to use when setting the cell value from an object.</param>
+            <returns>The <see cref="T:Ganss.Excel.ColumnInfo"/> object.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.SetCellUsing``1(System.Action{NPOI.SS.UserModel.ICell,``0})">
+            <summary>Specifies a method to use when setting the cell value from an object.</summary>
+            <param name="setCell">The method to use when setting the cell value from an object.</param>
+            <returns>The <see cref="T:Ganss.Excel.ColumnInfo"/> object.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.SetPropertyUsing(System.Func{System.Object,System.Object})">
+            <summary>Specifies a method to use when setting the property value from the cell value.</summary>
+            <param name="setProp">The method to use when setting the property value from the cell value.</param>
+            <returns>The <see cref="T:Ganss.Excel.ColumnInfo"/> object.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.SetPropertyUsing(System.Func{System.Object,NPOI.SS.UserModel.ICell,System.Object})">
+            <summary>Specifies a method to use when setting the property value from the cell value.</summary>
+            <param name="setProp">The method to use when setting the property value from the cell value.</param>
+            <returns>The <see cref="T:Ganss.Excel.ColumnInfo"/> object.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.SetPropertyUsing(System.Func{System.Object,System.Object,NPOI.SS.UserModel.ICell,System.Object})">
+            <summary>Specifies a method to use when setting the property value from the cell value.</summary>
+            <param name="setProp">The method to use when setting the property value from the cell value.</param>
+            <returns>The <see cref="T:Ganss.Excel.ColumnInfo"/> object.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.SetPropertyUsing``1(System.Func{``0,System.Object,System.Object})">
+            <summary>Specifies a method to use when setting the property value from the cell value.</summary>
+            <param name="setProp">The method to use when setting the property value from the cell value.</param>
+            <returns>The <see cref="T:Ganss.Excel.ColumnInfo"/> object.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.SetPropertyUsing``1(System.Func{``0,System.Object,NPOI.SS.UserModel.ICell,System.Object})">
+            <summary>Specifies a method to use when setting the property value from the cell value.</summary>
+            <param name="setProp">The method to use when setting the property value from the cell value.</param>
+            <returns>The <see cref="T:Ganss.Excel.ColumnInfo"/> object.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.AsFormulaResult">
+            <summary>Selects formula results to be mapped instead of the formula itself.</summary>
+            <returns>The <see cref="T:Ganss.Excel.ColumnInfo"/> object.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.AsJson">
+            <summary>Selects the property to be serialized as JSON.</summary>
+            <returns>The <see cref="T:Ganss.Excel.ColumnInfo"/> object.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.#ctor(System.Reflection.PropertyInfo,Ganss.Excel.MappingDirections)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.ColumnInfo"/> class.
+            </summary>
+            <param name="propertyInfo">The property information.</param>
+            <param name="direction">Data direction</param>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.ColumnInfo"/> class.
+            </summary>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.FromExcelOnly">
+            <summary>Selects the property to be unidirectional from Excel to Object.</summary>
+            <returns>The <see cref="T:Ganss.Excel.ColumnInfo"/> object.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ColumnInfo.ToExcelOnly">
+            <summary>Selects the property to be unidirectional from Excel to Object.</summary>
+            <returns>The <see cref="T:Ganss.Excel.ColumnInfo"/> object.</returns>
+        </member>
+        <member name="T:Ganss.Excel.DynamicColumnInfo">
+            <summary>
+            Describes the mapping of an <see cref="T:System.Dynamic.ExpandoObject"/>'s property to a cell.
+            </summary>
+        </member>
+        <member name="P:Ganss.Excel.DynamicColumnInfo.Index">
+            <summary>
+            Gets or sets the column index.
+            </summary>
+        </member>
+        <member name="M:Ganss.Excel.DynamicColumnInfo.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.DynamicColumnInfo"/> class.
+            </summary>
+            <param name="index">The column index.</param>
+            <param name="name">The column name.</param>
+        </member>
+        <member name="M:Ganss.Excel.DynamicColumnInfo.#ctor(System.String,System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.DynamicColumnInfo"/> class.
+            </summary>
+            <param name="name">The column name.</param>
+            <param name="t">The type of the column.</param>
+        </member>
+        <member name="M:Ganss.Excel.DynamicColumnInfo.SetProperty(System.Object,System.Object,NPOI.SS.UserModel.ICell)">
+            <summary>
+            Sets the property of the specified object to the specified value.
+            </summary>
+            <param name="o">The object whose property to set.</param>
+            <param name="val">The value.</param>
+            <param name="cell">The cell where the value originates from.</param>
+        </member>
+        <member name="M:Ganss.Excel.DynamicColumnInfo.GetProperty(System.Object)">
+            <summary>
+            Gets the property value of the specified object.
+            </summary>
+            <param name="o">The o.</param>
+            <returns>The property value.</returns>
+        </member>
+        <member name="T:Ganss.Excel.MappingDirections">
+            <summary>
+            Data direction
+            </summary>
+        </member>
+        <member name="F:Ganss.Excel.MappingDirections.ExcelToObject">
+            <summary>
+            From Excel to Object
+            </summary>
+        </member>
+        <member name="F:Ganss.Excel.MappingDirections.ObjectToExcel">
+            <summary>
+            From Object to Excel
+            </summary>
+        </member>
+        <member name="F:Ganss.Excel.MappingDirections.Both">
+            <summary>
+            Both directions
+            </summary>
+        </member>
+        <member name="T:Ganss.Excel.ExcelMapper">
+            <summary>
+            Map objects to Excel files.
+            </summary>
+        </member>
+        <member name="P:Ganss.Excel.ExcelMapper.TypeMapperFactory">
+            <summary>
+            Gets or sets the <see cref="T:Ganss.Excel.TypeMapper"/> factory.
+            Default is a static <see cref="T:Ganss.Excel.TypeMapperFactory"/> object that caches <see cref="T:Ganss.Excel.TypeMapper"/>s statically across <see cref="T:Ganss.Excel.ExcelMapper"/> instances.
+            </summary>
+            <value>
+            The <see cref="T:Ganss.Excel.TypeMapper"/> factory.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ExcelMapper.HeaderRow">
+            <summary>
+            Gets or sets a value indicating whether the Excel file contains a header row of column names. Default is <c>true</c>.
+            </summary>
+            <value>
+              <c>true</c> if the Excel file contains a header row; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ExcelMapper.HeaderRowNumber">
+            <summary>
+            Gets or sets the row number of the header row. Default is 0.
+            The header row may be outside of the range of <see cref="P:Ganss.Excel.ExcelMapper.MinRowNumber"/> and <see cref="P:Ganss.Excel.ExcelMapper.MaxRowNumber"/>.
+            </summary>
+            <value>
+            The header row number.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ExcelMapper.MinRowNumber">
+            <summary>
+            Gets or sets the minimum row number of the rows that may contain data. Default is 0.
+            </summary>
+            <value>
+            The minimum row number.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ExcelMapper.MaxRowNumber">
+            <summary>
+            Gets or sets the inclusive maximum row number of the rows that may contain data. Default is <see cref="F:System.Int32.MaxValue"/>.
+            </summary>
+            <value>
+            The maximum row number.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ExcelMapper.TrackObjects">
+            <summary>
+            Gets or sets a value indicating whether to track objects read from the Excel file. Default is true.
+            If object tracking is enabled, the <see cref="T:Ganss.Excel.ExcelMapper"/> object keeps track of objects it yields through the Fetch() methods.
+            You can then modify these objects and save them back to an Excel file without having to specify the list of objects to save.
+            </summary>
+            <value>
+              <c>true</c> if object tracking is enabled; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ExcelMapper.SkipBlankRows">
+            <summary>
+            Gets or sets a value indicating whether to skip blank rows when reading from Excel files. Default is true.
+            </summary>
+            <value>
+              <c>true</c> if blank lines are skipped; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ExcelMapper.CreateMissingHeaders">
+            <summary>
+            Gets or sets a value indicating whether to create columns in existing Excel files for properties where
+            the corresponding header does not yet exist. If this is false and properties are mapped by name,
+            their corresponding headers must already be present in existing files.
+            Default is false.
+            </summary>
+            <value>
+              <c>true</c> if missing headers should be created; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.ExcelMapper.DataFormatter">
+            <summary>
+            Gets or sets the <see cref="P:Ganss.Excel.ExcelMapper.DataFormatter"/> object to use when formatting cell values.
+            </summary>
+            <value>
+            The <see cref="P:Ganss.Excel.ExcelMapper.DataFormatter"/> object to use when formatting cell values.
+            </value>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.ExcelMapper"/> class.
+            </summary>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.#ctor(NPOI.SS.UserModel.IWorkbook)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.ExcelMapper"/> class.
+            </summary>
+            <param name="workbook">The workbook.</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.ExcelMapper"/> class.
+            </summary>
+            <param name="file">The path to the Excel file.</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.#ctor(System.IO.Stream)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.ExcelMapper"/> class.
+            </summary>
+            <param name="stream">The stream the Excel file is read from.</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch``1(System.String,System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet name.
+            </summary>
+            <typeparam name="T">The type of objects the Excel file is mapped to.</typeparam>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch(System.String,System.Type,System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet name.
+            </summary>
+            <param name="type">The type of objects the Excel file is mapped to.</param>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch(System.String,System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet name.
+            </summary>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch``1(System.String,System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet index.
+            </summary>
+            <typeparam name="T">The type of objects the Excel file is mapped to.</typeparam>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch(System.String,System.Type,System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet index.
+            </summary>
+            <param name="type">The type of objects the Excel file is mapped to.</param>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch(System.String,System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet index.
+            </summary>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch``1(System.IO.Stream,System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet name.
+            </summary>
+            <typeparam name="T">The type of objects the Excel file is mapped to.</typeparam>
+            <param name="stream">The stream the Excel file is read from.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch(System.IO.Stream,System.Type,System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet name.
+            </summary>
+            <param name="type">The type of objects the Excel file is mapped to.</param>
+            <param name="stream">The stream the Excel file is read from.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch(System.IO.Stream,System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet name.
+            </summary>
+            <param name="stream">The stream the Excel file is read from.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch``1(System.IO.Stream,System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet index.
+            </summary>
+            <typeparam name="T">The type of objects the Excel file is mapped to.</typeparam>
+            <param name="stream">The stream the Excel file is read from.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch(System.IO.Stream,System.Type,System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet index.
+            </summary>
+            <param name="type">The type of objects the Excel file is mapped to.</param>
+            <param name="stream">The stream the Excel file is read from.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch(System.IO.Stream,System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet index.
+            </summary>
+            <param name="stream">The stream the Excel file is read from.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch``1(System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet name.
+            </summary>
+            <typeparam name="T">The type of objects the Excel file is mapped to.</typeparam>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when a sheet is not found</exception>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch(System.Type,System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet name.
+            </summary>
+            <param name="type">The type of objects the Excel file is mapped to.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when a sheet is not found</exception>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch(System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet name.
+            </summary>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Thrown when a sheet is not found</exception>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch``1(System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet index.
+            </summary>
+            <typeparam name="T">The type of objects the Excel file is mapped to.</typeparam>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch(System.Type,System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet index.
+            </summary>
+            <param name="type">The type of objects the Excel file is mapped to</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Fetch(System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet index.
+            </summary>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.FetchAsync``1(System.String,System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet name using async I/O.
+            </summary>
+            <typeparam name="T">The type of objects the Excel file is mapped to.</typeparam>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.FetchAsync(System.String,System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches dynamic objects from the specified sheet name using async I/O.
+            </summary>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.FetchAsync(System.String,System.Type,System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet name using async I/O.
+            </summary>
+            <param name="type">The type of objects the Excel file is mapped to.</param>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.FetchAsync``1(System.String,System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet index using async I/O.
+            </summary>
+            <typeparam name="T">The type of objects the Excel file is mapped to.</typeparam>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.FetchAsync(System.String,System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches dynamic objects from the specified sheet index using async I/O.
+            </summary>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.FetchAsync(System.String,System.Type,System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet index using async I/O.
+            </summary>
+            <param name="type">The type of objects the Excel file is mapped to.</param>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.FetchAsync``1(System.IO.Stream,System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet name using async I/O.
+            </summary>
+            <typeparam name="T">The type of objects the Excel file is mapped to.</typeparam>
+            <param name="stream">The stream the Excel file is read from.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.FetchAsync(System.IO.Stream,System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches dynamic objects from the specified sheet name using async I/O.
+            </summary>
+            <param name="stream">The stream the Excel file is read from.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.FetchAsync(System.IO.Stream,System.Type,System.String,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet name using async I/O.
+            </summary>
+            <param name="type">The type of objects the Excel file is mapped to.</param>
+            <param name="stream">The stream the Excel file is read from.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.FetchAsync``1(System.IO.Stream,System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet index using async I/O.
+            </summary>
+            <typeparam name="T">The type of objects the Excel file is mapped to.</typeparam>
+            <param name="stream">The stream the Excel file is read from.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.FetchAsync(System.IO.Stream,System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches dynamic objects from the specified sheet index using async I/O.
+            </summary>
+            <param name="stream">The stream the Excel file is read from.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.FetchAsync(System.IO.Stream,System.Type,System.Int32,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Fetches objects from the specified sheet index using async I/O.
+            </summary>
+            <param name="type">The type of objects the Excel file is mapped to.</param>
+            <param name="stream">The stream the Excel file is read from.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="valueParser">Allow value parsing</param>
+            <returns>The objects read from the Excel file.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Save``1(System.String,System.Collections.Generic.IEnumerable{``0},System.String,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves the specified objects to the specified Excel file.
+            </summary>
+            <typeparam name="T">The type of objects to save.</typeparam>
+            <param name="file">The path to the Excel file.</param>
+            <param name="objects">The objects to save.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Save``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves the specified objects to the specified Excel file.
+            </summary>
+            <typeparam name="T">The type of objects to save.</typeparam>
+            <param name="file">The path to the Excel file.</param>
+            <param name="objects">The objects to save.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Save``1(System.IO.Stream,System.Collections.Generic.IEnumerable{``0},System.String,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves the specified objects to the specified stream.
+            </summary>
+            <typeparam name="T">The type of objects to save.</typeparam>
+            <param name="stream">The stream to save the objects to.</param>
+            <param name="objects">The objects to save.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Save``1(System.IO.Stream,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves the specified objects to the specified stream.
+            </summary>
+            <typeparam name="T">The type of objects to save.</typeparam>
+            <param name="stream">The stream to save the objects to.</param>
+            <param name="objects">The objects to save.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Save(System.String,System.String,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves tracked objects to the specified Excel file.
+            </summary>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Save(System.String,System.Int32,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves tracked objects to the specified Excel file.
+            </summary>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Save(System.IO.Stream,System.String,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves tracked objects to the specified stream.
+            </summary>
+            <param name="stream">The stream to save the objects to.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Save(System.IO.Stream,System.Int32,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves tracked objects to the specified stream.
+            </summary>
+            <param name="stream">The stream to save the objects to.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.SaveAsync``1(System.String,System.Collections.Generic.IEnumerable{``0},System.String,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves the specified objects to the specified Excel file using async I/O.
+            </summary>
+            <typeparam name="T">The type of objects to save.</typeparam>
+            <param name="file">The path to the Excel file.</param>
+            <param name="objects">The objects to save.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.SaveAsync``1(System.String,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves the specified objects to the specified Excel file using async I/O.
+            </summary>
+            <typeparam name="T">The type of objects to save.</typeparam>
+            <param name="file">The path to the Excel file.</param>
+            <param name="objects">The objects to save.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.SaveAsync``1(System.IO.Stream,System.Collections.Generic.IEnumerable{``0},System.String,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves the specified objects to the specified stream using async I/O.
+            </summary>
+            <typeparam name="T">The type of objects to save.</typeparam>
+            <param name="stream">The stream to save the objects to.</param>
+            <param name="objects">The objects to save.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.SaveAsync``1(System.IO.Stream,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves the specified objects to the specified stream using async I/O.
+            </summary>
+            <typeparam name="T">The type of objects to save.</typeparam>
+            <param name="stream">The stream to save the objects to.</param>
+            <param name="objects">The objects to save.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.SaveAsync(System.String,System.String,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves tracked objects to the specified Excel file using async I/O.
+            </summary>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.SaveAsync(System.String,System.Int32,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves tracked objects to the specified Excel file using async I/O.
+            </summary>
+            <param name="file">The path to the Excel file.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.SaveAsync(System.IO.Stream,System.String,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves tracked objects to the specified stream using async I/O.
+            </summary>
+            <param name="stream">The stream to save the objects to.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.SaveAsync(System.IO.Stream,System.Int32,System.Boolean,System.Func{System.String,System.Object,System.Object})">
+            <summary>
+            Saves tracked objects to the specified stream using async I/O.
+            </summary>
+            <param name="stream">The stream to save the objects to.</param>
+            <param name="sheetIndex">Index of the sheet.</param>
+            <param name="xlsx">if set to <c>true</c> saves in .xlsx format; otherwise, saves in .xls format.</param>
+            <param name="valueConverter">converter receiving property name and value</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.AddAfterMapping``1(System.Action{``0,System.Int32})">
+            <summary>
+            Action to call after an object is mapped
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.AddBeforeMapping``1(System.Action{``0,System.Int32})">
+            <summary>
+            Action to call before an object is mapped
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.AddMapping``1(System.String,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Adds a mapping from a column name to a property.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="columnName">Name of the column.</param>
+            <param name="propertyExpression">The property expression.</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.AddMapping``1(System.Int32,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Adds a mapping from a column index to a property.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="columnIndex">Index of the column.</param>
+            <param name="propertyExpression">The property expression.</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.AddMapping(System.Type,System.String,System.String)">
+            <summary>
+            Adds a mapping from a column name to a property.
+            </summary>
+            <param name="t">The type that contains the property to map to.</param>
+            <param name="columnName">Name of the column.</param>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.AddMapping(System.Type,System.Int32,System.String)">
+            <summary>
+            Adds a mapping from a column name to a property.
+            </summary>
+            <param name="t">The type that contains the property to map to.</param>
+            <param name="columnIndex">Index of the column.</param>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Ignore``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            Ignores a property.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="propertyExpression">The property expression.</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.Ignore(System.Type,System.String)">
+            <summary>
+            Ignores a property.
+            </summary>
+            <param name="t">The type that contains the property to map to.</param>
+            <param name="propertyName">Name of the property.</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.NormalizeUsing``1(System.Func{System.String,System.String})">
+            <summary>
+            Sets a name normalization function.
+            This function is used when the <see cref="T:Ganss.Excel.ExcelMapper"/> object tries to find a property name from a header cell value.
+            It can be used if the input header cell values may contain a larger number of possible values that can be easily mapped
+            backed to a single property name through a function, e.g. if the header cell may contain varying amounts of whitespace.
+            The default is the identity function.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="normalizeName">The name normalization function.</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.NormalizeUsing(System.Type,System.Func{System.String,System.String})">
+            <summary>
+            Sets a name normalization function.
+            This function is used when the <see cref="T:Ganss.Excel.ExcelMapper"/> object tries to find a property name from a header cell value.
+            It can be used if the input header cell values may contain a larger number of possible values that can be easily mapped
+            backed to a single property name through a function, e.g. if the header cell may contain varying amounts of whitespace.
+            The default is the identity function.
+            </summary>
+            <param name="t">The type that contains the property to map to.</param>
+            <param name="normalizeName">The name normalization function.</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.NormalizeUsing(System.Func{System.String,System.String})">
+            <summary>
+            Sets a default name normalization function.
+            This function is used when the <see cref="T:Ganss.Excel.ExcelMapper"/> object tries to find a property name from a header cell value.
+            It can be used if the input header cell values may contain a larger number of possible values that can be easily mapped
+            backed to a single property name through a function, e.g. if the header cell may contain varying amounts of whitespace.
+            This default normalization function works across types. If a normalization function is set for a specific type it takes
+            precedence over this default function.
+            The default is the identity function.
+            </summary>
+            <param name="normalizeName">The name normalization function.</param>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.LetterToIndex(System.String)">
+            <summary>
+            Converts Excel column letters to column indexes (e.g. "A" yields 1).
+            </summary>
+            <param name="letter">The Excel column letter.</param>
+            <returns>The column index.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ExcelMapper.IndexToLetter(System.Int32)">
+            <summary>
+            Converts a column index to the corresponding Excel column letter or letters (e.g. 1 yields "A").
+            </summary>
+            <param name="index">The column index.</param>
+            <returns>The Excel column letter or letters.</returns>
+        </member>
+        <member name="T:Ganss.Excel.Exceptions.ExcelMapperConvertException">
+            <summary>
+            Represents an error that occurs when conversion of a cell value to the mapped property type fails.
+            </summary>
+        </member>
+        <member name="P:Ganss.Excel.Exceptions.ExcelMapperConvertException.CellValue">
+            <summary>
+            Gets the original cell value.
+            </summary>
+            <value>
+            The original cell value.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.Exceptions.ExcelMapperConvertException.TargetType">
+            <summary>
+            Gets the type of the property that the cell is mapped to.
+            </summary>
+            <value>
+            The type of the property that the cell is mapped to.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.Exceptions.ExcelMapperConvertException.Line">
+            <summary>
+            Gets the line number of the cell where the error occurred.
+            </summary>
+            <value>
+            The line number of the cell where the error occurred.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.Exceptions.ExcelMapperConvertException.Column">
+            <summary>
+            Gets the column number of the cell where the error occurred.
+            </summary>
+            <value>
+            The column number of the cell where the error occurred.
+            </value>
+        </member>
+        <member name="M:Ganss.Excel.Exceptions.ExcelMapperConvertException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.Exceptions.ExcelMapperConvertException"/> class.
+            </summary>
+        </member>
+        <member name="M:Ganss.Excel.Exceptions.ExcelMapperConvertException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.Exceptions.ExcelMapperConvertException"/> class.
+            </summary>
+            <param name="message">The message the describes the error.</param>
+        </member>
+        <member name="M:Ganss.Excel.Exceptions.ExcelMapperConvertException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.Exceptions.ExcelMapperConvertException"/> class.
+            </summary>
+            <param name="message">The message the describes the error.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified.</param>
+        </member>
+        <member name="M:Ganss.Excel.Exceptions.ExcelMapperConvertException.#ctor(System.Object,System.Type,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.Exceptions.ExcelMapperConvertException"/> class.
+            </summary>
+            <param name="cellValue">The value of the cell where the error occurred.</param>
+            <param name="targetType">The type of the property the cell is mapped to.</param>
+            <param name="line">The line number of the cell where the error occurred.</param>
+            <param name="column">The column number of the cell where the error occurred.</param>
+        </member>
+        <member name="M:Ganss.Excel.Exceptions.ExcelMapperConvertException.#ctor(System.Object,System.Type,System.Int32,System.Int32,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.Exceptions.ExcelMapperConvertException"/> class.
+            </summary>
+            <param name="cellValue">The value of the cell where the error occurred.</param>
+            <param name="targetType">The type of the property the cell is mapped to.</param>
+            <param name="line">The line number of the cell where the error occurred.</param>
+            <param name="column">The column number of the cell where the error occurred.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference if no inner exception is specified.</param>
+        </member>
+        <member name="M:Ganss.Excel.Exceptions.ExcelMapperConvertException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Ganss.Excel.Exceptions.ExcelMapperConvertException"/> class with serialized data.
+            </summary>
+            <param name="info">The object that holds the serialized data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="M:Ganss.Excel.Exceptions.ExcelMapperConvertException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Sets the <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with information about the exception.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+        </member>
+        <member name="T:Ganss.Excel.ITypeMapperFactory">
+            <summary>
+            A caching factory of <see cref="T:Ganss.Excel.TypeMapper"/> objects.
+            </summary>
+        </member>
+        <member name="M:Ganss.Excel.ITypeMapperFactory.Create(System.Type)">
+            <summary>
+            Creates a <see cref="T:Ganss.Excel.TypeMapper"/> for the specified type.
+            </summary>
+            <param name="type">The type to create a <see cref="T:Ganss.Excel.TypeMapper"/> object for.</param>
+            <returns>A <see cref="T:Ganss.Excel.TypeMapper"/> for the specified type.</returns>
+        </member>
+        <member name="M:Ganss.Excel.ITypeMapperFactory.Create(System.Object)">
+            <summary>
+            Creates a <see cref="T:Ganss.Excel.TypeMapper"/> for the specified object.
+            </summary>
+            <param name="o">The object to create a <see cref="T:Ganss.Excel.TypeMapper"/> object for.</param>
+            <returns>A <see cref="T:Ganss.Excel.TypeMapper"/> for the specified object.</returns>
+        </member>
+        <member name="T:Ganss.Excel.TypeMapper">
+            <summary>
+            Maps a <see cref="P:Ganss.Excel.TypeMapper.Type"/>'s properties to columns in an Excel sheet.
+            </summary>
+        </member>
+        <member name="P:Ganss.Excel.TypeMapper.Type">
+            <summary>
+            Gets the type being mapped.
+            </summary>
+        </member>
+        <member name="P:Ganss.Excel.TypeMapper.ColumnsByName">
+            <summary>
+            Gets or sets the columns by name.
+            </summary>
+            <value>
+            The dictionary of columns by name.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.TypeMapper.ColumnsByIndex">
+            <summary>
+            Gets or sets the columns by index.
+            </summary>
+            <value>
+            The dictionary of columns by index.
+            </value>
+        </member>
+        <member name="P:Ganss.Excel.TypeMapper.BeforeMappingActionInvoker">
+            <summary>
+            Gets or sets the Before Mapping action.
+            </summary>
+        </member>
+        <member name="P:Ganss.Excel.TypeMapper.AfterMappingActionInvoker">
+            <summary>
+            Gets or sets the After Mapping action.
+            </summary>
+        </member>
+        <member name="M:Ganss.Excel.TypeMapper.Create(System.Type)">
+            <summary>
+            Creates a <see cref="T:Ganss.Excel.TypeMapper"/> object from the specified type.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>A <see cref="T:Ganss.Excel.TypeMapper"/> object.</returns>
+        </member>
+        <member name="M:Ganss.Excel.TypeMapper.Create(System.Collections.Generic.IEnumerable{NPOI.SS.UserModel.ICell},System.Boolean)">
+            <summary>
+            Creates a <see cref="T:Ganss.Excel.TypeMapper"/> object from a list of cells.
+            </summary>
+            <param name="columns">The cells.</param>
+            <param name="useContentAsName"><c>true</c> if the cell's contents should be used as the column name; otherwise, <c>false</c>.</param>
+            <returns>A <see cref="T:Ganss.Excel.TypeMapper"/> object.</returns>
+        </member>
+        <member name="M:Ganss.Excel.TypeMapper.Create(System.Dynamic.ExpandoObject)">
+            <summary>
+            Creates a <see cref="T:Ganss.Excel.TypeMapper"/> object from an <see cref="T:System.Dynamic.ExpandoObject"/> object.
+            </summary>
+            <param name="o">The <see cref="T:System.Dynamic.ExpandoObject"/> object.</param>
+            <returns>A <see cref="T:Ganss.Excel.TypeMapper"/> object.</returns>
+        </member>
+        <member name="M:Ganss.Excel.TypeMapper.CreateExpando">
+            <summary>
+            Creates an <see cref="T:System.Dynamic.ExpandoObject"/> object that includes type mapping information.
+            </summary>
+            <returns>An <see cref="T:System.Dynamic.ExpandoObject"/> object.</returns>
+        </member>
+        <member name="P:Ganss.Excel.TypeMapper.Constructor">
+            <summary>
+            Gets or sets the constructor to initialize the mapped type. Only used if the mapped type has no default constructor.
+            </summary>
+        </member>
+        <member name="P:Ganss.Excel.TypeMapper.ConstructorParams">
+            <summary>
+            Gets or sets the constructor parameters by name.
+            </summary>
+        </member>
+        <member name="M:Ganss.Excel.TypeMapper.GetColumnByName(System.String)">
+            <summary>
+            Gets the <see cref="T:Ganss.Excel.ColumnInfo"/> for the specified column name.
+            </summary>
+            <param name="name">The column name.</param>
+            <returns>A <see cref="T:Ganss.Excel.ColumnInfo"/> object or null if no <see cref="T:Ganss.Excel.ColumnInfo"/> exists for the specified column name.</returns>
+        </member>
+        <member name="M:Ganss.Excel.TypeMapper.GetColumnByIndex(System.Int32)">
+            <summary>
+            Gets the <see cref="T:Ganss.Excel.ColumnInfo"/> for the specified column index.
+            </summary>
+            <param name="index">The column index.</param>
+            <returns>A <see cref="T:Ganss.Excel.ColumnInfo"/> object or null if no <see cref="T:Ganss.Excel.ColumnInfo"/> exists for the specified column index.</returns>
+        </member>
+        <member name="T:Ganss.Excel.TypeMapperFactory">
+            <summary>
+            A caching factory of <see cref="T:Ganss.Excel.TypeMapper"/> objects.
+            </summary>
+        </member>
+        <member name="M:Ganss.Excel.TypeMapperFactory.Create(System.Type)">
+            <summary>
+            Creates a <see cref="T:Ganss.Excel.TypeMapper"/> for the specified type.
+            </summary>
+            <param name="type">The type to create a <see cref="T:Ganss.Excel.TypeMapper"/> object for.</param>
+            <returns>A <see cref="T:Ganss.Excel.TypeMapper"/> for the specified type.</returns>
+        </member>
+        <member name="M:Ganss.Excel.TypeMapperFactory.Create(System.Object)">
+            <summary>
+            Creates a <see cref="T:Ganss.Excel.TypeMapper"/> for the specified object.
+            </summary>
+            <param name="o">The object to create a <see cref="T:Ganss.Excel.TypeMapper"/> object for.</param>
+            <returns>A <see cref="T:Ganss.Excel.TypeMapper"/> for the specified object.</returns>
+        </member>
+    </members>
+</doc>

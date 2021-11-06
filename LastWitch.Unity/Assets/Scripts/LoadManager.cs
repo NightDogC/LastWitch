@@ -7,6 +7,8 @@ public class LoadManager : MonoBehaviour
     void Awake()
     {
         IngredientInfoManager im = new IngredientInfoManager();
-        Debug.Log( im.IngredInfos.Count.ToString() + " kinds of ingredients found." );
+        Debug.Log(im.IngredInfos.Count.ToString() + " kinds of ingredients found.");
+        //im.LoadExcel();
+        //Debug.Log(IngredientInfoManager.IngredInfos[1].Description.ToString());
     }
 }
