@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using HG.Libs;
 using System;
 using System.IO;
+using UnityEngine.UI;
 
 public class IngredientInfo {
     public int Id { get; set; }
@@ -16,19 +17,20 @@ public class IngredientInfo {
     public string Description { get; set; }
 }
 public class Ingredient {
-    IngredientInfo Info;
+    public IngredientInfo Info { get; set; }
     public long PickTime { get; set; }
     public int Count { get; set; } = 0;
-    public void Put()
+    public void Put(int amount = 1)
     {
-        Count++;
+        Count += amount;
     }
     public void Take()
     {
         Count = Count - 1 <= 0 ? 0 : Count - 1;
     }
-    public Ingredient( int Count, long Picktime = -1 )
+    public Ingredient(IngredientInfo ingInfo, int Count, long Picktime = -1 )
     {
+        this.Info = ingInfo;
         this.PickTime = PickTime == -1 ? DateTime.Now.Ticks : PickTime;
         this.Count = Count;
     }
@@ -59,7 +61,7 @@ public class IngredientInfoManager {
                 break;
         }
     }
-    public List<IngredientInfo> IngredInfos { get; set; } = new List<IngredientInfo>();
+   static  public List<IngredientInfo> IngredInfos { get; set; } = new List<IngredientInfo>();
     public List<IngredientInfo> LoadExcel( string path = mExcelPath )
     {
         return Excel.DeserializeList<IngredientInfo>( path, true );

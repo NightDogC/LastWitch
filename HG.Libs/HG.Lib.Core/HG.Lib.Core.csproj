@@ -35,7 +35,7 @@
       <HintPath>..\packages\Portable.BouncyCastle.1.8.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
     <Reference Include="ExcelMapper, Version=5.0.0.0, Culture=neutral, PublicKeyToken=6c3f2bec99465df3, processorArchitecture=MSIL">
-      <HintPath>..\packages\ExcelMapper.5.0.166\lib\net45\ExcelMapper.dll</HintPath>
+      <HintPath>..\packages\ExcelMapper.5.0.105\lib\net45\ExcelMapper.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -68,6 +68,7 @@
     <Compile Include="Xml.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
