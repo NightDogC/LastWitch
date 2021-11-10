@@ -11,7 +11,7 @@ public class CharacterMove : MonoBehaviour
 
     void Update()
     {
-        if (dist > 1.3)
+        if (dist > 1.3) // 可能会导致mask开启无法操作，界面无响应
         {
             current = this.transform.position;
             transform.position = Vector3.MoveTowards(current, target, Time.deltaTime * speed);

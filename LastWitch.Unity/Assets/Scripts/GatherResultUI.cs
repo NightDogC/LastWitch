@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class GatherResultUI : MonoBehaviour
 {
     public Image[] textures = new Image[3];
-    static public List<int> resultID = new List<int>();
-    static public List<int> resultAmount = new List<int>();
+    
+    static public List<Ingredient> Ingredients = new List<Ingredient>();
     public void ShowResult()
     {
         Color imagecolor = new Color(225, 225, 225, 225);
@@ -18,12 +18,13 @@ public class GatherResultUI : MonoBehaviour
             textures[i].GetComponentInChildren<Text>().text = "";
         }
         this.gameObject.SetActive(true);
-        for (int i = 0; i < resultID.Count; i++)
+        for (int i = 0; i < Ingredients.Count; i++)
         {
-            string path = "Texture/Ingreds/" + resultID[i].ToString();
+            var ingd = Ingredients[i];
+            string path = $"Texture/Ingreds/{ingd.Info.Id}";
             textures[i].color = imagecolor;
             textures[i].sprite = Resources.Load<Sprite>(path);
-            textures[i].GetComponentInChildren<Text>().text = resultAmount[i].ToString();
+            textures[i].GetComponentInChildren<Text>().text = $"{ingd.Count}";
         }
     }
     static public void ResultConfirm()
@@ -31,7 +32,6 @@ public class GatherResultUI : MonoBehaviour
         GameObject.Find("GatherResult").SetActive(false);
         GameObject.Find("Mask").SetActive(false);
         GameObject.Find("UI-ExpInfo").SetActive(false);
-        resultID.Clear();
-        resultAmount.Clear();
+       Ingredients.Clear();
     }
 }

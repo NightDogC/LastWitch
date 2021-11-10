@@ -731,7 +731,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTargetSpot: 0
   ingredslist:
-  - ingredsId: 0
+  - Id: 0
     amountAndProb:
     - amount: 1
       accProb: 0.2
@@ -1096,7 +1096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTargetSpot: 0
   ingredslist:
-  - ingredsId: 0
+  - Id: 0
     amountAndProb:
     - amount: 0
       accProb: 0.2
@@ -1104,7 +1104,7 @@ MonoBehaviour:
       accProb: 0.7
     - amount: 2
       accProb: 1
-  - ingredsId: 1
+  - Id: 1
     amountAndProb:
     - amount: 0
       accProb: 0.2
@@ -1146,15 +1146,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTargetSpot: 0
   ingredslist:
-  - ingredsId: 0
+  - Id: 0
     amountAndProb:
     - amount: 1
       accProb: 1
-  - ingredsId: 1
+  - Id: 1
     amountAndProb:
     - amount: 1
       accProb: 1
-  - ingredsId: 2
+  - Id: 2
     amountAndProb:
     - amount: 1
       accProb: 1
@@ -1646,13 +1646,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTargetSpot: 0
   ingredslist:
-  - ingredsId: 1
+  - Id: 0
     amountAndProb:
     - amount: 1
       accProb: 0.5
     - amount: 2
       accProb: 1
-  - ingredsId: 2
+  - Id: 1
     amountAndProb:
     - amount: 1
       accProb: 0.6
@@ -2122,13 +2122,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTargetSpot: 0
   ingredslist:
-  - ingredsId: 0
+  - Id: 0
     amountAndProb:
     - amount: 0
       accProb: 0.3
     - amount: 2
       accProb: 1
-  - ingredsId: 2
+  - Id: 1
     amountAndProb:
     - amount: 1
       accProb: 0.4
@@ -2282,19 +2282,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTargetSpot: 0
   ingredslist:
-  - ingredsId: 0
+  - Id: 0
     amountAndProb:
     - amount: 1
       accProb: 0.8
     - amount: 2
       accProb: 1
-  - ingredsId: 1
+  - Id: 1
     amountAndProb:
     - amount: 0
       accProb: 0.75
     - amount: 1
       accProb: 1
-  - ingredsId: 2
+  - Id: 2
     amountAndProb:
     - amount: 0
       accProb: 0.15

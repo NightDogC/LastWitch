@@ -32,8 +32,19 @@ public struct amountAndProb
 [Serializable]
 public struct IngredsInSpot
 {
-    public int ingredsId;
+    public int Id;
     public amountAndProb[] amountAndProb;
+    public Ingredient Draw() {
+        int amount = 0;
+        double rand = UnityEngine.Random.Range( 0f, 1f );
+        foreach ( var ap in amountAndProb ) {
+            if ( rand < ap.accProb ) {
+                amount = ap.amount;
+                break;
+            }
+        }
+        return new Ingredient( IngredientInfoManager.IngredInfos[Id], amount, DateTime.Now.Ticks );
+    }
 }
 
 
