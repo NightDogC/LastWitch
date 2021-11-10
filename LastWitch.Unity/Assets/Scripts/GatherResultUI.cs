@@ -11,6 +11,12 @@ public class GatherResultUI : MonoBehaviour
     public void ShowResult()
     {
         Color imagecolor = new Color(225, 225, 225, 225);
+        Color blankcolor = new Color(225, 225, 225, 0);
+        for (int i = 0; i < textures.Length; i++)
+        {
+            textures[i].color = blankcolor;
+            textures[i].GetComponentInChildren<Text>().text = "";
+        }
         this.gameObject.SetActive(true);
         for (int i = 0; i < resultID.Count; i++)
         {

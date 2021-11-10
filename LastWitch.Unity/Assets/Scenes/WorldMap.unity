@@ -733,17 +733,11 @@ MonoBehaviour:
   ingredslist:
   - ingredsId: 0
     amountAndProb:
-    - amount: 0
-      accProb: 0.2
     - amount: 1
-      accProb: 0.7
-    - amount: 2
-      accProb: 1
-  - ingredsId: 1
-    amountAndProb:
-    - amount: 0
       accProb: 0.2
     - amount: 2
+      accProb: 0.7
+    - amount: 3
       accProb: 1
   mask: {fileID: 1205755847}
   resultUI: {fileID: 951479927}
@@ -1154,17 +1148,15 @@ MonoBehaviour:
   ingredslist:
   - ingredsId: 0
     amountAndProb:
-    - amount: 0
-      accProb: 0.2
     - amount: 1
-      accProb: 0.7
-    - amount: 2
       accProb: 1
   - ingredsId: 1
     amountAndProb:
-    - amount: 0
-      accProb: 0.2
-    - amount: 2
+    - amount: 1
+      accProb: 1
+  - ingredsId: 2
+    amountAndProb:
+    - amount: 1
       accProb: 1
   mask: {fileID: 1205755847}
   resultUI: {fileID: 951479927}
@@ -1654,18 +1646,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTargetSpot: 0
   ingredslist:
-  - ingredsId: 0
-    amountAndProb:
-    - amount: 0
-      accProb: 0.2
-    - amount: 1
-      accProb: 0.7
-    - amount: 2
-      accProb: 1
   - ingredsId: 1
     amountAndProb:
-    - amount: 0
-      accProb: 0.2
+    - amount: 1
+      accProb: 0.5
+    - amount: 2
+      accProb: 1
+  - ingredsId: 2
+    amountAndProb:
+    - amount: 1
+      accProb: 0.6
     - amount: 2
       accProb: 1
   mask: {fileID: 1205755847}
@@ -2135,16 +2125,16 @@ MonoBehaviour:
   - ingredsId: 0
     amountAndProb:
     - amount: 0
-      accProb: 0.2
-    - amount: 1
-      accProb: 0.7
+      accProb: 0.3
     - amount: 2
       accProb: 1
-  - ingredsId: 1
+  - ingredsId: 2
     amountAndProb:
-    - amount: 0
-      accProb: 0.2
+    - amount: 1
+      accProb: 0.4
     - amount: 2
+      accProb: 0.7
+    - amount: 3
       accProb: 1
   mask: {fileID: 1205755847}
   resultUI: {fileID: 951479927}
@@ -2294,16 +2284,22 @@ MonoBehaviour:
   ingredslist:
   - ingredsId: 0
     amountAndProb:
-    - amount: 0
-      accProb: 0.2
     - amount: 1
-      accProb: 0.7
+      accProb: 0.8
     - amount: 2
       accProb: 1
   - ingredsId: 1
     amountAndProb:
     - amount: 0
-      accProb: 0.2
+      accProb: 0.75
+    - amount: 1
+      accProb: 1
+  - ingredsId: 2
+    amountAndProb:
+    - amount: 0
+      accProb: 0.15
+    - amount: 1
+      accProb: 0.75
     - amount: 2
       accProb: 1
   mask: {fileID: 1205755847}

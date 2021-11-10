@@ -13,6 +13,12 @@ public class Explore : MonoBehaviour
     public void ShowExpInfo(SpotManager spot)
     {
         Color imagecolor = new Color(225, 225, 225, 225);
+        Color blankcolor = new Color(225, 225, 225, 0);
+        for (int i = 0; i < textures.Length; i++)
+        {
+            textures[i].color = blankcolor;
+            textures[i].GetComponentInChildren<Text>().text = "";
+        }
         this.gameObject.SetActive(false);
         this.gameObject.SetActive(true);
         this.gameObject.transform.position = (Input.mousePosition);
