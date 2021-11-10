@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ExpInfo
+  - Spot
   layers:
   - Default
   - TransparentFX

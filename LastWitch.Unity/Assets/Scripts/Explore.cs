@@ -7,7 +7,6 @@ public class Explore : MonoBehaviour
 {
     //exp is Explore
     public GameObject expInfoUI;
-    private GameObject _expInfoUI;
     public Image[] textures = new Image[3];
     public SpotManager currentSpot;
 
@@ -17,6 +16,14 @@ public class Explore : MonoBehaviour
         this.gameObject.SetActive(false);
         this.gameObject.SetActive(true);
         this.gameObject.transform.position = (Input.mousePosition);
+        RectTransform rect = this.GetComponent<RectTransform>();
+        if (rect.anchoredPosition.x > 460)
+        {
+            Vector2 pos;
+            pos.x = 460;
+            pos.y = rect.anchoredPosition.y;
+            rect.anchoredPosition = pos;
+        }
         for (int i = 0; i < spot.ingredslist.Length; i++)
         {
             string path = "Texture/Ingreds/" + spot.ingredslist[i].ingredsId.ToString();
@@ -38,6 +45,9 @@ public class Explore : MonoBehaviour
     }
     public void GoGathering()
     {
+        currentSpot.isTargetSpot = true;
+        GameObject.FindWithTag("Player").GetComponent<CharacterMove>().GoForSpot(currentSpot);
+        currentSpot.mask.SetActive(true);
         for (int i = 0; i < currentSpot.ingredslist.Length; i++)
         {
             double rand = Random.Range(0f, 1f);
@@ -47,6 +57,8 @@ public class Explore : MonoBehaviour
                 if (rand < currentSpot.ingredslist[i].amountAndProb[j].accProb)
                 {
                     Inventory.Ingredients[currentSpot.ingredslist[i].ingredsId].Put(currentSpot.ingredslist[i].amountAndProb[j].amount);
+                    GatherResultUI.resultID.Add(currentSpot.ingredslist[i].ingredsId);
+                    GatherResultUI.resultAmount.Add(currentSpot.ingredslist[i].amountAndProb[j].amount);
                     Debug.Log("Got " + currentSpot.ingredslist[i].amountAndProb[j].amount.ToString() +
                         Inventory.Ingredients[currentSpot.ingredslist[i].ingredsId].Info.Name + "s");
                     break;
