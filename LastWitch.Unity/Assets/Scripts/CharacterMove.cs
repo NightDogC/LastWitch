@@ -8,7 +8,10 @@ public class CharacterMove : MonoBehaviour
     Vector3 current;
     float dist;
     float speed = 6f;
-
+    private void Awake()
+    {
+        current = this.gameObject.transform.position;
+    }
     void Update()
     {
         if (dist > 1.3) // 可能会导致mask开启无法操作，界面无响应
